@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio | UTPlay</title>
+    <link rel="stylesheet" href="css/app.css">
+    <script src="js/api.js" defer></script>
+    <script src="js/pages.js" defer></script>
+</head>
+<body class="app-page" data-page="dashboard" data-protected="true">
+<header class="topbar">
+    <a class="brand" href="/dashboard.html"><span class="brand-mark">UT</span><span>Play</span></a>
+    <nav class="main-nav" aria-label="Navegación principal">
+        <a class="active" href="/dashboard.html">Inicio</a>
+        <a href="/cursos.html">Cursos</a>
+        <a href="/perfil.html">Mi progreso</a>
+    </nav>
+    <div class="user-menu">
+        <div class="avatar js-user-initial">U</div>
+        <div><strong class="js-user-name">Estudiante</strong><span class="js-user-cycle">Ciclo</span></div>
+        <button class="icon-button js-logout" type="button" title="Cerrar sesión">↪</button>
+    </div>
+</header>
+
+<main class="page-container">
+    <section class="hero-card">
+        <div>
+            <span class="eyebrow">UTP Chiclayo · Panel académico</span>
+            <h1>¡Hola, <span id="welcomeName">estudiante</span>! 👋</h1>
+            <p>Tu siguiente avance comienza con unos minutos de práctica.</p>
+            <a class="btn btn-light" href="/cursos.html">Explorar cursos →</a>
+        </div>
+        <div class="hero-illustration" aria-hidden="true">
+            <span class="code-chip">{ }</span>
+            <div class="book-shape"><span>UT</span></div>
+            <span class="spark spark-one">✦</span><span class="spark spark-two">+</span>
+        </div>
+    </section>
+
+    <section class="stats-grid" aria-label="Resumen de progreso">
+        <article class="stat-card">
+            <div class="stat-icon violet">★</div>
+            <div><span>Puntos totales</span><strong id="pointsStat">—</strong></div>
+            <small>Tu esfuerzo acumulado</small>
+        </article>
+        <article class="stat-card">
+            <div class="stat-icon blue">↗</div>
+            <div><span>Nivel actual</span><strong id="levelStat">—</strong></div>
+            <small>500 puntos por nivel</small>
+        </article>
+        <article class="stat-card">
+            <div class="stat-icon green">✓</div>
+            <div><span>Quizzes realizados</span><strong id="quizStat">—</strong></div>
+            <small>Retos distintos completados</small>
+        </article>
+        <article class="stat-card">
+            <div class="stat-icon orange">◎</div>
+            <div><span>Promedio</span><strong id="averageStat">—</strong></div>
+            <small>Mejor nota por quiz</small>
+        </article>
+    </section>
+
+    <div class="content-grid">
+        <section class="panel panel-large">
+            <div class="section-heading">
+                <div><span class="eyebrow eyebrow-dark">Continúa aprendiendo</span><h2>Cursos para ti</h2></div>
+                <a href="/cursos.html">Ver todos →</a>
+            </div>
+            <div id="dashboardCourses" class="course-list skeleton-container">
+                <div class="skeleton skeleton-card"></div><div class="skeleton skeleton-card"></div>
+            </div>
+        </section>
+
+        <aside class="panel progress-panel">
+            <div class="section-heading"><div><span class="eyebrow eyebrow-dark">Tu avance</span><h2>Progreso general</h2></div></div>
+            <div id="progressRing" class="progress-ring" style="--progress: 0deg">
+                <div><strong id="progressValue">0%</strong><span>completado</span></div>
+            </div>
+            <p id="progressCopy">Empieza tu primer quiz para registrar el progreso.</p>
+            <a class="btn btn-soft btn-block" href="/perfil.html">Ver historial</a>
+        </aside>
+    </div>
+
+    <section class="panel recent-panel">
+        <div class="section-heading"><div><span class="eyebrow eyebrow-dark">Actividad</span><h2>Resultados recientes</h2></div></div>
+        <div id="recentResults" class="table-wrap"><p class="empty-state">Cargando resultados…</p></div>
+    </section>
+</main>
+
+<div id="toast" class="toast" hidden></div>
+</body>
+</html>

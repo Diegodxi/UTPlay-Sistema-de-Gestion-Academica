@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Inicia sesion en UTPlay y refuerza tus cursos de Ingenieria de Sistemas.">
+    <title>Iniciar sesión | UTPlay</title>
+    <link rel="stylesheet" href="css/app.css">
+    <script src="js/api.js" defer></script>
+    <script src="js/pages.js" defer></script>
+</head>
+<body class="auth-page" data-page="login">
+<main class="auth-shell">
+    <section class="auth-visual" aria-label="Presentación de UTPlay">
+        <a class="brand brand-light" href="/login.html" aria-label="UTPlay, inicio">
+            <span class="brand-mark">UT</span><span>Play</span>
+        </a>
+        <div class="auth-copy">
+            <span class="eyebrow">Ingeniería de Sistemas · UTP Chiclayo</span>
+            <h1>Convierte cada repaso en un nuevo logro.</h1>
+            <p>Practica con quizzes, suma puntos y visualiza tu progreso durante la carrera.</p>
+            <div class="feature-row">
+                <div><strong>+6</strong><span>Cursos iniciales</span></div>
+                <div><strong>100%</strong><span>Progreso visible</span></div>
+                <div><strong>24/7</strong><span>Repaso disponible</span></div>
+            </div>
+        </div>
+        <div class="floating-card floating-card-one"><span>✓</span> Reto completado</div>
+        <div class="floating-card floating-card-two"><span>★</span> +120 puntos</div>
+    </section>
+
+    <section class="auth-form-panel">
+        <div class="form-wrap">
+            <div class="mobile-brand">
+                <span class="brand-mark">UT</span><strong>Play</strong>
+            </div>
+            <span class="eyebrow eyebrow-dark">Bienvenido de vuelta</span>
+            <h2>Inicia sesión</h2>
+            <p class="form-intro">Continúa reforzando tus conocimientos.</p>
+
+            <div id="formAlert" class="alert" hidden role="alert"></div>
+
+            <form id="loginForm" novalidate>
+                <label for="correo">Correo electrónico</label>
+                <div class="input-wrap">
+                    <span class="input-icon">@</span>
+                    <input id="correo" name="correo" type="email" autocomplete="email"
+                           placeholder="tu.correo@utp.edu.pe" required>
+                </div>
+
+                <label for="password">Contraseña</label>
+                <div class="input-wrap">
+                    <span class="input-icon">●</span>
+                    <input id="password" name="password" type="password"
+                           autocomplete="current-password" placeholder="Ingresa tu contraseña" required>
+                    <button class="password-toggle" type="button" data-toggle-password="password"
+                            aria-label="Mostrar contraseña">Ver</button>
+                </div>
+
+                <button id="submitButton" class="btn btn-primary btn-block" type="submit">
+                    <span class="button-text">Ingresar a UTPlay</span>
+                    <span class="button-loader" hidden></span>
+                </button>
+            </form>
+
+            <p class="auth-switch">¿Aún no tienes una cuenta? <a href="/registro.html">Regístrate gratis</a></p>
+            <p class="security-note">🔒 Tu contraseña se almacena cifrada de forma segura.</p>
+        </div>
+    </section>
+</main>
+</body>
+</html>

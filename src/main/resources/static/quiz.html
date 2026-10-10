@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resolver quiz | UTPlay</title>
+    <link rel="stylesheet" href="css/app.css">
+    <script src="js/api.js" defer></script>
+    <script src="js/pages.js" defer></script>
+</head>
+<body class="app-page quiz-page" data-page="quiz" data-protected="true">
+<header class="topbar compact-topbar">
+    <a class="brand" href="/dashboard.html"><span class="brand-mark">UT</span><span>Play</span></a>
+    <a class="back-link" href="/cursos.html">← Volver a cursos</a>
+    <div class="user-menu">
+        <div class="avatar js-user-initial">U</div><div><strong class="js-user-name">Estudiante</strong><span class="js-user-cycle">Ciclo</span></div>
+        <button class="icon-button js-logout" type="button" title="Cerrar sesión">↪</button>
+    </div>
+</header>
+
+<main class="quiz-container">
+    <section id="quizHeader" class="quiz-heading">
+        <div class="skeleton skeleton-title"></div>
+    </section>
+    <div class="quiz-progress-wrap">
+        <div class="quiz-progress-copy"><span>Progreso de respuestas</span><strong id="answerProgressText">0 / 0</strong></div>
+        <div class="progress-track"><span id="answerProgressBar" style="width:0"></span></div>
+    </div>
+
+    <div id="quizAlert" class="alert" hidden role="alert"></div>
+    <form id="quizForm">
+        <section id="questionsContainer" class="questions-stack">
+            <div class="skeleton skeleton-question"></div><div class="skeleton skeleton-question"></div>
+        </section>
+        <div id="quizActions" class="quiz-actions" hidden>
+            <span>Revisa tus respuestas antes de enviarlas.</span>
+            <button id="submitQuizButton" class="btn btn-primary" type="submit">
+                <span class="button-text">Finalizar quiz</span><span class="button-loader" hidden></span>
+            </button>
+        </div>
+    </form>
+</main>
+</body>
+</html>
