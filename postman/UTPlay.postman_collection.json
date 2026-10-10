@@ -1,0 +1,131 @@
+{
+  "info": {
+    "_postman_id": "d7c86b67-73ae-4af4-bdad-120620260001",
+    "name": "UTPlay API",
+    "description": "Colección para probar registro, login, cursos, quizzes, resultados y gamificación de UTPlay.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:8080" },
+    { "key": "token", "value": "" },
+    { "key": "usuarioId", "value": "" },
+    { "key": "testEmail", "value": "estudiante.utplay@utp.edu.pe" },
+    { "key": "quizId", "value": "1" }
+  ],
+  "item": [
+    {
+      "name": "1. Registrar usuario",
+      "event": [{
+        "listen": "prerequest",
+        "script": {
+          "exec": [
+            "pm.collectionVariables.set('testEmail', `estudiante.${Date.now()}@utp.edu.pe`);"
+          ]
+        }
+      }],
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"nombre\": \"Estudiante UTPlay\",\n  \"correo\": \"{{testEmail}}\",\n  \"password\": \"ClaveSegura123\",\n  \"cicloActual\": 3\n}"
+        },
+        "url": "{{baseUrl}}/usuarios/registrar"
+      }
+    },
+    {
+      "name": "2. Iniciar sesión",
+      "event": [{
+        "listen": "test",
+        "script": {
+          "exec": [
+            "pm.test('Login exitoso', function () { pm.response.to.have.status(200); });",
+            "const data = pm.response.json();",
+            "pm.collectionVariables.set('token', data.token);",
+            "pm.collectionVariables.set('usuarioId', data.usuario.idUsuario);"
+          ]
+        }
+      }],
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"correo\": \"{{testEmail}}\",\n  \"password\": \"ClaveSegura123\"\n}"
+        },
+        "url": "{{baseUrl}}/usuarios/login"
+      }
+    },
+    {
+      "name": "3. Consultar perfil",
+      "request": {
+        "method": "GET",
+        "auth": { "type": "bearer", "bearer": [{ "key": "token", "value": "{{token}}", "type": "string" }] },
+        "url": "{{baseUrl}}/usuarios/{{usuarioId}}"
+      }
+    },
+    {
+      "name": "4. Actualizar perfil",
+      "request": {
+        "method": "PUT",
+        "auth": { "type": "bearer", "bearer": [{ "key": "token", "value": "{{token}}", "type": "string" }] },
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": { "mode": "raw", "raw": "{\n  \"nombre\": \"Estudiante UTPlay Actualizado\",\n  \"cicloActual\": 3\n}" },
+        "url": "{{baseUrl}}/usuarios/{{usuarioId}}"
+      }
+    },
+    {
+      "name": "5. Listar cursos",
+      "request": {
+        "method": "GET",
+        "auth": { "type": "bearer", "bearer": [{ "key": "token", "value": "{{token}}", "type": "string" }] },
+        "url": "{{baseUrl}}/cursos"
+      }
+    },
+    {
+      "name": "6. Filtrar cursos por ciclo",
+      "request": {
+        "method": "GET",
+        "auth": { "type": "bearer", "bearer": [{ "key": "token", "value": "{{token}}", "type": "string" }] },
+        "url": "{{baseUrl}}/cursos/ciclo/1"
+      }
+    },
+    {
+      "name": "7. Obtener quiz",
+      "request": {
+        "method": "GET",
+        "auth": { "type": "bearer", "bearer": [{ "key": "token", "value": "{{token}}", "type": "string" }] },
+        "url": "{{baseUrl}}/quiz/{{quizId}}"
+      }
+    },
+    {
+      "name": "8. Resolver quiz 1",
+      "request": {
+        "method": "POST",
+        "auth": { "type": "bearer", "bearer": [{ "key": "token", "value": "{{token}}", "type": "string" }] },
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"idQuiz\": 1,\n  \"respuestas\": [\n    { \"idPregunta\": 1, \"alternativa\": \"B\" },\n    { \"idPregunta\": 2, \"alternativa\": \"A\" },\n    { \"idPregunta\": 3, \"alternativa\": \"C\" }\n  ]\n}"
+        },
+        "url": "{{baseUrl}}/quiz/resolver"
+      }
+    },
+    {
+      "name": "9. Consultar resultados",
+      "request": {
+        "method": "GET",
+        "auth": { "type": "bearer", "bearer": [{ "key": "token", "value": "{{token}}", "type": "string" }] },
+        "url": "{{baseUrl}}/resultados/{{usuarioId}}"
+      }
+    },
+    {
+      "name": "10. Consultar gamificación",
+      "request": {
+        "method": "GET",
+        "auth": { "type": "bearer", "bearer": [{ "key": "token", "value": "{{token}}", "type": "string" }] },
+        "url": "{{baseUrl}}/gamificacion/{{usuarioId}}"
+      }
+    }
+  ]
+}
