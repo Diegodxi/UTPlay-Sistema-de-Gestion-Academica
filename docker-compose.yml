@@ -1,0 +1,22 @@
+services:
+  mysql:
+    image: mysql:8.4
+    container_name: utplay-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: utplay_db
+      TZ: America/Lima
+    ports:
+      - "3306:3306"
+    volumes:
+      - utplay_mysql_data:/var/lib/mysql
+      - ./database/utplay_db.sql:/docker-entrypoint-initdb.d/01-utplay.sql:ro
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-proot"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  utplay_mysql_data:
