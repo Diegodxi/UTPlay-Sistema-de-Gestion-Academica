@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultado | UTPlay</title>
+    <link rel="stylesheet" href="css/app.css">
+    <script src="js/api.js" defer></script>
+    <script src="js/pages.js" defer></script>
+</head>
+<body class="app-page" data-page="resultado" data-protected="true">
+<header class="topbar">
+    <a class="brand" href="/dashboard.html"><span class="brand-mark">UT</span><span>Play</span></a>
+    <nav class="main-nav" aria-label="Navegación principal">
+        <a href="/dashboard.html">Inicio</a><a href="/cursos.html">Cursos</a><a href="/perfil.html">Mi progreso</a>
+    </nav>
+    <div class="user-menu">
+        <div class="avatar js-user-initial">U</div><div><strong class="js-user-name">Estudiante</strong><span class="js-user-cycle">Ciclo</span></div>
+        <button class="icon-button js-logout" type="button" title="Cerrar sesión">↪</button>
+    </div>
+</header>
+
+<main class="page-container result-container">
+    <section id="resultHero" class="result-hero">
+        <span class="result-icon">✓</span>
+        <span class="eyebrow">Resultado registrado</span>
+        <h1 id="resultTitle">¡Quiz completado!</h1>
+        <p id="resultMessage">Tu práctica ya forma parte de tu progreso.</p>
+        <div class="score-circle"><strong id="resultScore">—</strong><span>puntos de 100</span></div>
+        <div id="approvalBadge" class="status-badge">Procesando</div>
+    </section>
+
+    <section class="result-stats">
+        <article><span>Respuestas correctas</span><strong id="correctAnswers">—</strong></article>
+        <article><span>Puntos ganados</span><strong id="earnedPoints">—</strong></article>
+        <article><span>Nivel actual</span><strong id="currentLevel">—</strong></article>
+        <article><span>Total acumulado</span><strong id="totalPoints">—</strong></article>
+    </section>
+
+    <section id="newAchievements" class="panel achievement-panel" hidden>
+        <div class="section-heading"><div><span class="eyebrow eyebrow-dark">¡Excelente!</span><h2>Nuevos logros desbloqueados</h2></div></div>
+        <div id="achievementList" class="achievement-list"></div>
+    </section>
+
+    <section class="panel">
+        <div class="section-heading"><div><span class="eyebrow eyebrow-dark">Retroalimentación</span><h2>Revisa tus respuestas</h2></div></div>
+        <div id="answerReview" class="answer-review"><p class="empty-state">Cargando detalle…</p></div>
+    </section>
+
+    <div class="center-actions">
+        <a id="retryQuiz" class="btn btn-soft" href="/cursos.html">Intentar nuevamente</a>
+        <a class="btn btn-primary" href="/cursos.html">Elegir otro curso</a>
+    </div>
+</main>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Crea tu cuenta de estudiante en UTPlay.">
+    <title>Crear cuenta | UTPlay</title>
+    <link rel="stylesheet" href="css/app.css">
+    <script src="js/api.js" defer></script>
+    <script src="js/pages.js" defer></script>
+</head>
+<body class="auth-page" data-page="registro">
+<main class="auth-shell">
+    <section class="auth-visual auth-visual-register" aria-label="Presentación de UTPlay">
+        <a class="brand brand-light" href="/login.html">
+            <span class="brand-mark">UT</span><span>Play</span>
+        </a>
+        <div class="auth-copy">
+            <span class="eyebrow">UTP Chiclayo · Tu ruta académica</span>
+            <h1>Empieza hoy a dominar cada curso.</h1>
+            <p>Registra tu ciclo para ver retos adecuados a tu avance y desbloquear nuevos cursos.</p>
+            <ul class="check-list">
+                <li>Quizzes breves y enfocados</li>
+                <li>Niveles y logros por tu esfuerzo</li>
+                <li>Historial personal de resultados</li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="auth-form-panel">
+        <div class="form-wrap form-wrap-wide">
+            <div class="mobile-brand"><span class="brand-mark">UT</span><strong>Play</strong></div>
+            <span class="eyebrow eyebrow-dark">Únete a la plataforma</span>
+            <h2>Crea tu cuenta</h2>
+            <p class="form-intro">Completa tus datos como estudiante.</p>
+
+            <div id="formAlert" class="alert" hidden role="alert"></div>
+
+            <form id="registerForm" novalidate>
+                <label for="nombre">Nombres y apellidos</label>
+                <div class="input-wrap">
+                    <span class="input-icon">◉</span>
+                    <input id="nombre" name="nombre" type="text" autocomplete="name"
+                           maxlength="100" placeholder="Ej. Andrea Torres Ruiz" required>
+                </div>
+
+                <label for="correo">Correo electrónico</label>
+                <div class="input-wrap">
+                    <span class="input-icon">@</span>
+                    <input id="correo" name="correo" type="email" autocomplete="email"
+                           maxlength="150" placeholder="tu.correo@utp.edu.pe" required>
+                </div>
+
+                <div class="form-grid-two">
+                    <div>
+                        <label for="password">Contraseña</label>
+                        <div class="input-wrap">
+                            <span class="input-icon">●</span>
+                            <input id="password" name="password" type="password"
+                                   autocomplete="new-password" minlength="8" maxlength="72"
+                                   placeholder="Mínimo 8 caracteres" required>
+                        </div>
+                    </div>
+                    <div>
+                        <label for="cicloActual">Ciclo actual</label>
+                        <div class="input-wrap">
+                            <span class="input-icon">#</span>
+                            <select id="cicloActual" name="cicloActual" required>
+                                <option value="">Selecciona</option>
+                                <option value="1">1.er ciclo</option><option value="2">2.º ciclo</option>
+                                <option value="3">3.er ciclo</option><option value="4">4.º ciclo</option>
+                                <option value="5">5.º ciclo</option><option value="6">6.º ciclo</option>
+                                <option value="7">7.º ciclo</option><option value="8">8.º ciclo</option>
+                                <option value="9">9.º ciclo</option><option value="10">10.º ciclo</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <button id="submitButton" class="btn btn-primary btn-block" type="submit">
+                    <span class="button-text">Crear mi cuenta</span>
+                    <span class="button-loader" hidden></span>
+                </button>
+            </form>
+
+            <p class="auth-switch">¿Ya tienes una cuenta? <a href="/login.html">Inicia sesión</a></p>
+        </div>
+    </section>
+</main>
+</body>
+</html>

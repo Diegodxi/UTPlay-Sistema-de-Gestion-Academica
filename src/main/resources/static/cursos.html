@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cursos | UTPlay</title>
+    <link rel="stylesheet" href="css/app.css">
+    <script src="js/api.js" defer></script>
+    <script src="js/pages.js" defer></script>
+</head>
+<body class="app-page" data-page="cursos" data-protected="true">
+<header class="topbar">
+    <a class="brand" href="/dashboard.html"><span class="brand-mark">UT</span><span>Play</span></a>
+    <nav class="main-nav" aria-label="Navegación principal">
+        <a href="/dashboard.html">Inicio</a><a class="active" href="/cursos.html">Cursos</a><a href="/perfil.html">Mi progreso</a>
+    </nav>
+    <div class="user-menu">
+        <div class="avatar js-user-initial">U</div><div><strong class="js-user-name">Estudiante</strong><span class="js-user-cycle">Ciclo</span></div>
+        <button class="icon-button js-logout" type="button" title="Cerrar sesión">↪</button>
+    </div>
+</header>
+
+<main class="page-container">
+    <section class="page-heading">
+        <div><span class="eyebrow eyebrow-dark">Ingeniería de Sistemas</span><h1>Elige tu próximo reto</h1><p>Los cursos se habilitan según tu ciclo y los prerrequisitos aprobados.</p></div>
+        <div class="filter-box">
+            <label for="cycleFilter">Filtrar por ciclo</label>
+            <select id="cycleFilter">
+                <option value="">Todos los ciclos</option>
+                <option value="1">Ciclo 1</option><option value="2">Ciclo 2</option>
+                <option value="3">Ciclo 3</option><option value="4">Ciclo 4</option>
+                <option value="5">Ciclo 5</option><option value="6">Ciclo 6</option>
+                <option value="7">Ciclo 7</option><option value="8">Ciclo 8</option>
+                <option value="9">Ciclo 9</option><option value="10">Ciclo 10</option>
+            </select>
+        </div>
+    </section>
+
+    <div id="courseCount" class="result-count">Cargando cursos…</div>
+    <section id="coursesGrid" class="courses-grid skeleton-container" aria-live="polite">
+        <div class="skeleton skeleton-course"></div><div class="skeleton skeleton-course"></div><div class="skeleton skeleton-course"></div>
+    </section>
+</main>
+
+<div id="toast" class="toast" hidden></div>
+</body>
+</html>
