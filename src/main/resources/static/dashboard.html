@@ -1,247 +1,147 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inicio | UTPlay</title>
+    <meta name="description" content="Panel de estudio de UTPlay: cursos, resultados y progreso académico.">
+    <title>Mi panel | UTPlay</title>
+
     <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" href="css/dashboard-custom.css">
     <script src="js/api.js" defer></script>
     <script src="js/pages.js" defer></script>
 </head>
-
-<body class="app-page"
-      data-page="dashboard"
-      data-protected="true">
+<body class="app-page dashboard-page" data-page="dashboard" data-protected="true">
 
 <header class="topbar">
-
-    <a class="brand" href="/dashboard.html">
-        <span class="brand-mark">UT</span>
-        <span>Play</span>
+    <a class="brand dashboard-brand" href="/dashboard.html" aria-label="UTPlay, inicio">
+        <span class="dashboard-logo">UTPlay</span>
     </a>
 
     <nav class="main-nav" aria-label="Navegación principal">
-        <a class="active"
-           href="/dashboard.html"
-           aria-current="page">Inicio</a>
-
+        <a class="active" href="/dashboard.html" aria-current="page">Inicio</a>
         <a href="/cursos.html">Cursos</a>
-
         <a href="/ranking.html">Ranking</a>
-
         <a href="/perfil.html">Mi progreso</a>
     </nav>
 
     <div class="user-menu">
-
-        <div class="avatar js-user-initial">U</div>
-
-        <div>
+        <div class="avatar js-user-initial" aria-hidden="true">U</div>
+        <div class="dashboard-user-meta">
             <strong class="js-user-name">Estudiante</strong>
             <span class="js-user-cycle">Ciclo</span>
         </div>
-
-        <button class="icon-button js-logout"
-                type="button"
-                title="Cerrar sesión"
-                aria-label="Cerrar sesión">
-            ↪
-        </button>
-
+        <button class="icon-button js-logout" type="button" title="Cerrar sesión" aria-label="Cerrar sesión">Salir</button>
     </div>
-
 </header>
-
 
 <main class="page-container">
 
-    <!-- BIENVENIDA -->
-
-    <section class="hero-card">
-
+    <!-- Cabecera del panel -->
+    <section class="dashboard-heading" aria-label="Bienvenida">
         <div>
-            <span class="eyebrow">
-                UTP Chiclayo · Panel académico
-            </span>
-
-            <h1>
-                ¡Hola,
-                <span id="welcomeName">estudiante</span>! 👋
-            </h1>
-
-            <p>
-                Tu siguiente avance comienza con
-                unos minutos de práctica.
-            </p>
-
-            <a class="btn btn-light" href="/cursos.html">
-                Explorar cursos →
-            </a>
+            <p class="dashboard-breadcrumb">UTPlay <span>/</span> Inicio</p>
+            <p class="dashboard-label">TU PANEL ACADÉMICO</p>
+            <h1>Hola, <span id="welcomeName">estudiante</span>.</h1>
+            <p class="dashboard-heading-copy">Revisa tu avance y continúa practicando a tu ritmo.</p>
         </div>
-
-        <div class="hero-illustration" aria-hidden="true">
-            <span class="code-chip">{ }</span>
-
-            <div class="book-shape">
-                <span>UT</span>
-            </div>
-
-            <span class="spark spark-one">✦</span>
-            <span class="spark spark-two">+</span>
-        </div>
-
+        <a class="dashboard-outline-button" href="/cursos.html">Ver malla de cursos <span aria-hidden="true">↗</span></a>
     </section>
 
-
-    <!-- ESTADÍSTICAS -->
-
-    <section class="stats-grid"
-             aria-label="Resumen de progreso">
-
-        <article class="stat-card">
-            <div class="stat-icon violet">★</div>
-
-            <div>
-                <span>Puntos totales</span>
-                <strong id="pointsStat">—</strong>
+    <!-- Acceso destacado -->
+    <section class="hero-card dashboard-hero" aria-label="Acceso a la práctica">
+        <div class="dashboard-hero-copy">
+            <span class="dashboard-hero-kicker">TU ESPACIO DE ESTUDIO</span>
+            <h2>Retoma tu práctica<br>cuando quieras.</h2>
+            <p>Escoge un curso de tu ciclo, completa un cuestionario y consulta tus resultados.</p>
+            <div class="dashboard-hero-actions">
+                <a class="dashboard-primary-action" href="/cursos.html">Ir a mis cursos <span aria-hidden="true">→</span></a>
+                <a class="dashboard-hero-link" href="/ranking.html">Ver ranking <span aria-hidden="true">↗</span></a>
             </div>
+        </div>
+        <div class="dashboard-hero-guide" aria-label="Cómo funciona UTPlay">
+            <p class="dashboard-guide-title">ASÍ FUNCIONA</p>
+            <div class="dashboard-guide-row"><span>01</span><p>Elige una asignatura</p></div>
+            <div class="dashboard-guide-row"><span>02</span><p>Resuelve un cuestionario</p></div>
+            <div class="dashboard-guide-row"><span>03</span><p>Consulta tu progreso</p></div>
+        </div>
+    </section>
 
-            <small>Tu esfuerzo acumulado</small>
+    <!-- Resumen dinámico del estudiante -->
+    <section class="stats-grid" aria-label="Resumen de progreso">
+        <article class="stat-card">
+            <div class="dashboard-stat-top"><span>Puntos acumulados</span><span class="dashboard-stat-tag">XP</span></div>
+            <strong id="pointsStat">—</strong>
+            <small>Experiencia ganada</small>
         </article>
-
         <article class="stat-card">
-            <div class="stat-icon blue">↗</div>
-
-            <div>
-                <span>Nivel actual</span>
-                <strong id="levelStat">—</strong>
-            </div>
-
+            <div class="dashboard-stat-top"><span>Nivel actual</span><span class="dashboard-stat-tag">NV</span></div>
+            <strong id="levelStat">—</strong>
             <small>500 puntos por nivel</small>
         </article>
-
         <article class="stat-card">
-            <div class="stat-icon green">✓</div>
-
-            <div>
-                <span>Quizzes realizados</span>
-                <strong id="quizStat">—</strong>
-            </div>
-
-            <small>Retos distintos completados</small>
+            <div class="dashboard-stat-top"><span>Quizzes completados</span><span class="dashboard-stat-tag">QC</span></div>
+            <strong id="quizStat">—</strong>
+            <small>Retos distintos realizados</small>
         </article>
-
         <article class="stat-card">
-            <div class="stat-icon orange">◎</div>
-
-            <div>
-                <span>Promedio</span>
-                <strong id="averageStat">—</strong>
-            </div>
-
-            <small>Mejor nota por quiz</small>
+            <div class="dashboard-stat-top"><span>Promedio</span><span class="dashboard-stat-tag">%</span></div>
+            <strong id="averageStat">—</strong>
+            <small>Mejor puntaje por quiz</small>
         </article>
-
     </section>
 
-
-    <!-- CURSOS Y PROGRESO -->
-
+    <!-- Cursos y porcentaje de avance -->
     <div class="content-grid">
-
-        <section class="panel panel-large">
-
+        <section class="panel panel-large" aria-label="Cursos disponibles">
             <div class="section-heading">
-
                 <div>
-                    <span class="eyebrow eyebrow-dark">
-                        Continúa aprendiendo
-                    </span>
-
+                    <p class="dashboard-section-kicker">PARA CONTINUAR</p>
                     <h2>Cursos para ti</h2>
+                    <p class="dashboard-section-copy">Cuestionarios disponibles según tu ciclo.</p>
                 </div>
-
-                <a href="/cursos.html">
-                    Ver todos →
-                </a>
-
+                <a href="/cursos.html">Ver todos <span aria-hidden="true">→</span></a>
             </div>
-
-            <div id="dashboardCourses"
-                 class="course-list skeleton-container">
-
+            <div id="dashboardCourses" class="course-list skeleton-container">
                 <div class="skeleton skeleton-card"></div>
                 <div class="skeleton skeleton-card"></div>
-
             </div>
-
         </section>
 
-
-        <aside class="panel progress-panel">
-
+        <aside class="panel progress-panel" aria-label="Progreso general">
             <div class="section-heading">
                 <div>
-                    <span class="eyebrow eyebrow-dark">
-                        Tu avance
-                    </span>
-
-                    <h2>Progreso general</h2>
+                    <p class="dashboard-section-kicker">SEGUIMIENTO</p>
+                    <h2>Tu avance</h2>
                 </div>
             </div>
-
-            <div id="progressRing"
-                 class="progress-ring"
-                 style="--progress: 0deg">
-
+            <div id="progressRing" class="progress-ring" style="--progress: 0deg">
                 <div>
                     <strong id="progressValue">0%</strong>
                     <span>completado</span>
                 </div>
-
             </div>
-
-            <p id="progressCopy">
-                Empieza tu primer quiz para registrar
-                el progreso.
-            </p>
-
-            <a class="btn btn-soft btn-block"
-               href="/perfil.html">
-                Ver historial
-            </a>
-
+            <p id="progressCopy">Cargando tu progreso…</p>
+            <a class="btn btn-soft btn-block" href="/perfil.html">Ver mi progreso <span aria-hidden="true">→</span></a>
         </aside>
-
     </div>
 
-
-    <!-- RESULTADOS RECIENTES -->
-
-    <section class="panel recent-panel">
-
+    <!-- Historial -->
+    <section class="panel recent-panel" aria-label="Resultados recientes">
         <div class="section-heading">
             <div>
-                <span class="eyebrow eyebrow-dark">
-                    Actividad
-                </span>
-
+                <p class="dashboard-section-kicker">TU ACTIVIDAD</p>
                 <h2>Resultados recientes</h2>
+                <p class="dashboard-section-copy">Tus últimos cuestionarios registrados.</p>
             </div>
+            <a href="/perfil.html">Ver historial <span aria-hidden="true">→</span></a>
         </div>
-
         <div id="recentResults" class="table-wrap">
-            <p class="empty-state">
-                Cargando resultados…
-            </p>
+            <p class="empty-state">Cargando resultados…</p>
         </div>
-
     </section>
-
 </main>
 
 <div id="toast" class="toast" hidden></div>
-
 </body>
 </html>

@@ -2,43 +2,92 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Resolver quiz | UTPlay</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Resolver cuestionario | UTPlay</title>
     <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" href="css/interior-custom.css">
+    <link rel="stylesheet" href="css/quiz-resultados-custom.css">
     <script src="js/api.js" defer></script>
     <script src="js/pages.js" defer></script>
 </head>
-<body class="app-page quiz-page" data-page="quiz" data-protected="true">
-<header class="topbar compact-topbar">
-    <a class="brand" href="/dashboard.html"><span class="brand-mark">UT</span><span>Play</span></a>
-    <a class="back-link" href="/cursos.html">← Volver a cursos</a>
+<body class="app-page interior-page quiz-page quiz-redesign" data-page="quiz" data-protected="true">
+<header class="topbar">
+    <a class="brand interior-brand" href="/dashboard.html" aria-label="UTPlay, inicio">
+        <span class="interior-logo">UTPlay</span>
+    </a>
+    <nav class="main-nav" aria-label="Navegación principal">
+        <a href="/dashboard.html">Inicio</a>
+        <a href="/cursos.html" class="active" aria-current="page">Cursos</a>
+        <a href="/ranking.html">Ranking</a>
+        <a href="/perfil.html">Mi progreso</a>
+    </nav>
     <div class="user-menu">
-        <div class="avatar js-user-initial">U</div><div><strong class="js-user-name">Estudiante</strong><span class="js-user-cycle">Ciclo</span></div>
-        <button class="icon-button js-logout" type="button" title="Cerrar sesión">↪</button>
+        <div class="avatar js-user-initial" aria-hidden="true">U</div>
+        <div class="interior-user-meta">
+            <strong class="js-user-name">Estudiante</strong>
+            <span class="js-user-cycle">Ciclo</span>
+        </div>
+        <button class="icon-button js-logout" type="button" title="Cerrar sesión" aria-label="Cerrar sesión">Salir</button>
     </div>
 </header>
-
-<main class="quiz-container">
-    <section id="quizHeader" class="quiz-heading">
-        <div class="skeleton skeleton-title"></div>
-    </section>
-    <div class="quiz-progress-wrap">
-        <div class="quiz-progress-copy"><span>Progreso de respuestas</span><strong id="answerProgressText">0 / 0</strong></div>
-        <div class="progress-track"><span id="answerProgressBar" style="width:0"></span></div>
+<main class="quiz-container quiz-layout-container">
+    <div class="quiz-route">
+        <a href="/dashboard.html">UTPlay</a><span>/</span>
+        <a href="/cursos.html">Cursos</a><span>/</span>
+        <strong>Cuestionario</strong>
     </div>
 
-    <div id="quizAlert" class="alert" hidden role="alert"></div>
-    <form id="quizForm">
-        <section id="questionsContainer" class="questions-stack">
-            <div class="skeleton skeleton-question"></div><div class="skeleton skeleton-question"></div>
-        </section>
-        <div id="quizActions" class="quiz-actions" hidden>
-            <span>Revisa tus respuestas antes de enviarlas.</span>
-            <button id="submitQuizButton" class="btn btn-primary" type="submit">
-                <span class="button-text">Finalizar quiz</span><span class="button-loader" hidden></span>
-            </button>
+    <div class="quiz-layout">
+        <div class="quiz-main-column">
+            <div class="quiz-page-intro">
+                <span class="interior-kicker">PRÁCTICA POR CURSO</span>
+                <a class="quiz-inline-back" href="/cursos.html">← Volver a cursos</a>
+            </div>
+
+            <!-- pages.js carga automáticamente título, curso y número de preguntas. -->
+            <section id="quizHeader" class="quiz-heading">
+                <div class="skeleton skeleton-title"></div>
+            </section>
+
+            <div id="quizAlert" class="alert" hidden role="alert"></div>
+
+            <div class="quiz-progress-wrap" aria-label="Progreso del cuestionario">
+                <div class="quiz-progress-copy">
+                    <span>Preguntas respondidas</span>
+                    <strong id="answerProgressText">0 / 0</strong>
+                </div>
+                <div class="progress-track" aria-hidden="true">
+                    <span id="answerProgressBar" style="width:0%"></span>
+                </div>
+            </div>
+
+            <form id="quizForm">
+                <section id="questionsContainer" class="questions-stack" aria-label="Preguntas del cuestionario">
+                    <div class="skeleton skeleton-question"></div>
+                    <div class="skeleton skeleton-question"></div>
+                </section>
+
+                <div id="quizActions" class="quiz-actions" hidden>
+                    <span>Revisa tus respuestas antes de enviarlas.</span>
+                    <button id="submitQuizButton" class="btn btn-primary" type="submit">
+                        <span class="button-text">Finalizar cuestionario →</span>
+                        <span class="button-loader" hidden></span>
+                    </button>
+                </div>
+            </form>
         </div>
-    </form>
+
+        <aside class="quiz-sidebar" aria-label="Indicaciones para resolver el cuestionario">
+            <span class="quiz-sidebar-kicker">ANTES DE EMPEZAR</span>
+            <h2>Practica a tu ritmo.</h2>
+            <p>Responde con calma. El sistema corregirá tus respuestas al finalizar.</p>
+            <div class="quiz-sidebar-rule"></div>
+            <div class="quiz-tip"><span>01</span><p>Lee cada pregunta con atención.</p></div>
+            <div class="quiz-tip"><span>02</span><p>Selecciona una sola alternativa.</p></div>
+            <div class="quiz-tip"><span>03</span><p>Completa todas antes de enviar.</p></div>
+            <a class="quiz-sidebar-link" href="/cursos.html">Explorar otros cursos ↗</a>
+        </aside>
+    </div>
 </main>
 </body>
 </html>

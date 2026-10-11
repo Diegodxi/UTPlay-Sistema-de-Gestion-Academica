@@ -12,72 +12,36 @@
     <title>Ranking de estudiantes | UTPlay</title>
 
     <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" href="css/interior-custom.css">
 
     <script src="js/api.js" defer></script>
     <script src="js/pages.js" defer></script>
 </head>
 
-<body class="app-page"
+<body class="app-page interior-page ranking-view"
       data-page="ranking"
       data-protected="true">
 
 
 
 <header class="topbar">
-
-    <a class="brand" href="/dashboard.html">
-        <span class="brand-mark">UT</span>
-        <span>Play</span>
+    <a class="brand interior-brand" href="/dashboard.html" aria-label="UTPlay, inicio">
+        <span class="interior-logo">UTPlay</span>
     </a>
-
-    <nav class="main-nav"
-         aria-label="Navegación principal">
-
-        <a href="/dashboard.html">
-            Inicio
-        </a>
-
-        <a href="/cursos.html">
-            Cursos
-        </a>
-
-        <a class="active"
-           href="/ranking.html"
-           aria-current="page">
-            Ranking
-        </a>
-
-        <a href="/perfil.html">
-            Mi progreso
-        </a>
-
+    <nav class="main-nav" aria-label="Navegación principal">
+        <a href="/dashboard.html">Inicio</a>
+        <a href="/cursos.html">Cursos</a>
+        <a href="/ranking.html" class="active" aria-current="page">Ranking</a>
+        <a href="/perfil.html">Mi progreso</a>
     </nav>
-
     <div class="user-menu">
-
-        <div class="avatar js-user-initial">
-            U
+        <div class="avatar js-user-initial" aria-hidden="true">U</div>
+        <div class="interior-user-meta">
+            <strong class="js-user-name">Estudiante</strong>
+            <span class="js-user-cycle">Ciclo</span>
         </div>
-
-        <div>
-            <strong class="js-user-name">
-                Estudiante
-            </strong>
-
-            <span class="js-user-cycle">
-                Ciclo
-            </span>
-        </div>
-
-        <button class="icon-button js-logout"
-                type="button"
-                title="Cerrar sesión"
-                aria-label="Cerrar sesión">
-            ↪
-        </button>
-
+        <button class="icon-button js-logout" type="button" title="Cerrar sesión" aria-label="Cerrar sesión">Salir</button>
     </div>
-
 </header>
 
 
@@ -87,22 +51,14 @@
 
     <!-- TÍTULO -->
 
-    <section class="page-heading">
-
-        <div>
-            <span class="eyebrow eyebrow-dark">
-                UTPlay · Clasificación de estudiantes
-            </span>
-
-            <h1>Ranking de estudiantes 🏆</h1>
-
-            <p>
-                Practica con los quizzes de tu carrera,
-                gana puntos y escala posiciones
-                en la clasificación.
-            </p>
+    <section class="page-heading interior-heading ranking-heading">
+        <div class="interior-heading-copy">
+            <p class="interior-breadcrumb">UTPlay <span>/</span> Ranking</p>
+            <span class="interior-kicker">CLASIFICACIÓN ACADÉMICA</span>
+            <h1>Ranking de estudiantes</h1>
+            <p>Consulta los puntos acumulados por los estudiantes y descubre tu posición en la clasificación.</p>
         </div>
-
+        <a class="interior-outline-link" href="/cursos.html">Explorar cursos <span aria-hidden="true">↗</span></a>
     </section>
 
 
@@ -113,20 +69,18 @@
         <div class="ranking-banner-copy">
 
             <span class="eyebrow">
-                Desafío académico
+                TU RENDIMIENTO
             </span>
 
-            <h2>¡Cada punto cuenta!</h2>
+            <h2>Tu práctica suma.</h2>
 
             <p>
-                Completa tus retos, fortalece tus
-                conocimientos y consigue un lugar
-                entre los mejores estudiantes.
+                Resuelve cuestionarios y consulta cómo evoluciona tu posición en el ranking.
             </p>
 
             <a href="/cursos.html"
                class="btn btn-light">
-                Ganar más puntos →
+                Ir a mis cursos →
             </a>
 
         </div>
@@ -234,10 +188,10 @@
              hidden>
 
         <div class="ranking-empty-icon">
-            🏆
+            ★
         </div>
 
-        <h2>¡El ranking está esperando!</h2>
+        <h2>Todavía no hay puntuaciones</h2>
 
         <p>
             Todavía no hay estudiantes registrados

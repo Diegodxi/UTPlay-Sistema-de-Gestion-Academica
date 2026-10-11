@@ -1,0 +1,268 @@
+/* UTPlay - Registro | Mismo estilo del login, sin afectar otras pantallas. */
+
+/* Logo completo en el recuadro rojo */
+.auth-page[data-page="registro"] .auth-logo-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 46px;
+    padding: 10px 18px;
+    border-radius: 12px;
+    background: #d00b40;
+    color: #fff;
+    font-size: 1.28rem;
+    font-weight: 850;
+    line-height: 1;
+    letter-spacing: -.035em;
+    white-space: nowrap;
+}
+.auth-page[data-page="registro"] .brand:hover .auth-logo-badge { background: #b70a38; }
+
+/* Panel izquierdo: mismo degradado vino que el login */
+.auth-page[data-page="registro"] .auth-visual {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 40px;
+    padding: 48px clamp(40px, 6vw, 96px) 42px;
+    background: linear-gradient(150deg, #24161b 0%, #3a1925 58%, #601a32 100%);
+    color: #fff;
+}
+.auth-page[data-page="registro"] .auth-visual::before,
+.auth-page[data-page="registro"] .auth-visual::after { content: none; }
+.auth-page[data-page="registro"] .login-side-top {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+}
+.auth-page[data-page="registro"] .login-side-label {
+    color: #e9c8d2;
+    font-size: .78rem;
+    letter-spacing: .02em;
+    text-align: right;
+}
+.auth-page[data-page="registro"] .auth-copy {
+    position: relative;
+    z-index: 1;
+    max-width: 610px;
+    margin: auto 0;
+}
+.auth-page[data-page="registro"] .login-kicker {
+    display: block;
+    margin-bottom: 24px;
+    padding-left: 13px;
+    border-left: 3px solid #ee3e6b;
+    color: #f0bccb;
+    font-size: .73rem;
+    font-weight: 750;
+    letter-spacing: .1em;
+    line-height: 1.6;
+    text-transform: uppercase;
+}
+.auth-page[data-page="registro"] .auth-copy h1 {
+    max-width: 590px;
+    margin: 0 0 24px;
+    font-size: clamp(2.8rem, 4.2vw, 4.15rem);
+    font-weight: 780;
+    letter-spacing: -.055em;
+    line-height: 1.09;
+}
+.auth-page[data-page="registro"] .auth-copy h1 span { color: #ffb9cb; }
+.auth-page[data-page="registro"] .auth-copy > p {
+    max-width: 475px;
+    margin: 0;
+    color: #e8d9df;
+    font-size: 1rem;
+    line-height: 1.8;
+}
+.auth-page[data-page="registro"] .login-highlights {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    max-width: 580px;
+    margin-top: 54px;
+    padding-top: 23px;
+    border-top: 1px solid rgba(255, 255, 255, .24);
+}
+.auth-page[data-page="registro"] .login-highlight { padding: 0 16px; }
+.auth-page[data-page="registro"] .login-highlight:first-child { padding-left: 0; }
+.auth-page[data-page="registro"] .login-highlight + .login-highlight {
+    border-left: 1px solid rgba(255, 255, 255, .2);
+}
+.auth-page[data-page="registro"] .login-highlight strong,
+.auth-page[data-page="registro"] .login-highlight span { display: block; }
+.auth-page[data-page="registro"] .login-highlight strong {
+    margin-bottom: 5px;
+    color: #fff;
+    font-size: 1.62rem;
+    font-weight: 750;
+    line-height: 1.1;
+}
+.auth-page[data-page="registro"] .login-highlight span {
+    color: #dec8d0;
+    font-size: .77rem;
+    line-height: 1.55;
+}
+.auth-page[data-page="registro"] .login-side-footer {
+    position: relative;
+    z-index: 1;
+    margin: 0;
+    color: #c5aab4;
+    font-size: .78rem;
+}
+
+/* Formulario de registro */
+.auth-page[data-page="registro"] .auth-form-panel {
+    padding: 28px clamp(24px, 4vw, 64px);
+    background: #f7f6f5;
+}
+.auth-page[data-page="registro"] .form-wrap {
+    width: min(100%, 540px);
+    padding: clamp(28px, 2.7vw, 40px);
+    border: 1px solid #e8e5e5;
+    border-radius: 20px;
+    background: #fff;
+    box-shadow: 0 16px 42px rgba(32, 24, 29, .055);
+}
+.auth-page[data-page="registro"] .eyebrow-dark {
+    display: block;
+    margin-bottom: 12px;
+    color: #b20b38;
+    font-size: .7rem;
+    font-weight: 800;
+    letter-spacing: .12em;
+}
+.auth-page[data-page="registro"] .form-wrap h2 {
+    margin: 0 0 9px;
+    color: #221f25;
+    font-size: clamp(1.75rem, 2.5vw, 2.2rem);
+    font-weight: 760;
+    line-height: 1.15;
+    letter-spacing: -.045em;
+}
+.auth-page[data-page="registro"] .form-intro {
+    max-width: 390px;
+    margin: 0 0 27px;
+    color: #69646b;
+    font-size: .93rem;
+    line-height: 1.6;
+}
+.auth-page[data-page="registro"] #registerForm label {
+    margin: 0 0 9px;
+    color: #38333b;
+    font-size: .82rem;
+    font-weight: 700;
+}
+.auth-page[data-page="registro"] #registerForm .input-wrap { margin-bottom: 17px; }
+.auth-page[data-page="registro"] #registerForm .input-wrap input,
+.auth-page[data-page="registro"] #registerForm .input-wrap select {
+    width: 100%;
+    height: 52px;
+    padding-left: 42px;
+    border: 1px solid #dedbdf;
+    border-radius: 10px;
+    color: #29262d;
+    background: #fefefe;
+    box-shadow: none;
+    font-size: .91rem;
+    transition: border-color .18s, box-shadow .18s;
+}
+.auth-page[data-page="registro"] #registerForm input::placeholder { color: #9b969e; }
+.auth-page[data-page="registro"] #registerForm .input-wrap input:focus,
+.auth-page[data-page="registro"] #registerForm .input-wrap select:focus {
+    border-color: #bd123e;
+    box-shadow: 0 0 0 3px rgba(189, 18, 62, .10);
+    outline: none;
+}
+.auth-page[data-page="registro"] .input-icon { left: 15px; color: #918a94; }
+.auth-page[data-page="registro"] .form-grid-two {
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+    gap: 14px;
+}
+.auth-page[data-page="registro"] .password-toggle {
+    right: 11px;
+    color: #a10a32;
+    font-size: .79rem;
+    font-weight: 750;
+}
+.auth-page[data-page="registro"] #registerForm #password { padding-right: 56px; }
+.auth-page[data-page="registro"] #submitButton {
+    width: 100%;
+    min-height: 52px;
+    margin-top: 5px;
+    border-radius: 10px;
+    background: #c8103e;
+    color: #fff;
+    font-size: .93rem;
+    font-weight: 760;
+    box-shadow: none;
+}
+.auth-page[data-page="registro"] #submitButton:hover {
+    background: #a30b32;
+    box-shadow: none;
+    transform: none;
+}
+.auth-page[data-page="registro"] .auth-switch {
+    margin: 24px 0 0;
+    color: #69646b;
+    font-size: .85rem;
+    text-align: center;
+}
+.auth-page[data-page="registro"] .auth-switch a { color: #b20b38; font-weight: 750; }
+.auth-page[data-page="registro"] .auth-switch a:hover { text-decoration: underline; }
+.auth-page[data-page="registro"] .security-note {
+    margin: 19px auto 0;
+    padding-top: 17px;
+    border-top: 1px solid #ece9ea;
+    color: #8a858b;
+    font-size: .75rem;
+    line-height: 1.6;
+    text-align: center;
+}
+.auth-page[data-page="registro"] #formAlert { border-radius: 10px; font-size: .85rem; }
+.auth-page[data-page="registro"] a:focus-visible,
+.auth-page[data-page="registro"] button:focus-visible {
+    outline: 3px solid rgba(200, 16, 62, .3);
+    outline-offset: 3px;
+}
+
+@media (min-width: 721px) and (max-width: 1100px) {
+    .auth-page[data-page="registro"] .auth-visual { padding: 36px 30px; }
+    .auth-page[data-page="registro"] .auth-copy h1 { font-size: clamp(2.2rem, 3.6vw, 3rem); }
+    .auth-page[data-page="registro"] .login-highlights { margin-top: 30px; }
+    .auth-page[data-page="registro"] .login-highlight { padding: 0 10px; }
+    .auth-page[data-page="registro"] .login-highlight strong { font-size: 1.28rem; }
+    .auth-page[data-page="registro"] .auth-form-panel { padding: 26px 20px; }
+    .auth-page[data-page="registro"] .form-wrap { padding: 26px 24px; }
+    .auth-page[data-page="registro"] .form-grid-two { grid-template-columns: 1fr; gap: 0; }
+}
+@media (max-width: 720px) {
+    .auth-page[data-page="registro"] .auth-visual { display: none; }
+    .auth-page[data-page="registro"] .auth-form-panel {
+        min-height: 100vh;
+        padding: 30px 22px;
+        background: #fff;
+    }
+    .auth-page[data-page="registro"] .form-wrap {
+        width: min(100%, 440px);
+        padding: 0;
+        border: 0;
+        border-radius: 0;
+        box-shadow: none;
+    }
+    .auth-page[data-page="registro"] .mobile-brand { display: flex; margin-bottom: 32px; }
+    .auth-page[data-page="registro"] .mobile-brand .auth-logo-badge {
+        min-height: 42px;
+        padding: 10px 16px;
+        font-size: 1.18rem;
+    }
+    .auth-page[data-page="registro"] .form-grid-two { grid-template-columns: 1fr; gap: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+    .auth-page[data-page="registro"] #submitButton,
+    .auth-page[data-page="registro"] #registerForm input,
+    .auth-page[data-page="registro"] #registerForm select { transition: none; }
+}

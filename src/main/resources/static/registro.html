@@ -3,75 +3,115 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Crea tu cuenta de estudiante en UTPlay.">
+    <meta name="description" content="Crea tu cuenta de estudiante en UTPlay y practica con los cursos de Ingeniería de Sistemas.">
     <title>Crear cuenta | UTPlay</title>
+
     <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" href="css/registro-custom.css">
+
     <script src="js/api.js" defer></script>
     <script src="js/pages.js" defer></script>
 </head>
 <body class="auth-page" data-page="registro">
 <main class="auth-shell">
+
+    <!-- Panel izquierdo: misma identidad visual del login -->
     <section class="auth-visual auth-visual-register" aria-label="Presentación de UTPlay">
-        <a class="brand brand-light" href="/login.html">
-            <span class="brand-mark">UT</span><span>Play</span>
-        </a>
-        <div class="auth-copy">
-            <span class="eyebrow">UTP Chiclayo · Tu ruta académica</span>
-            <h1>Empieza hoy a dominar cada curso.</h1>
-            <p>Registra tu ciclo para ver retos adecuados a tu avance y desbloquear nuevos cursos.</p>
-            <ul class="check-list">
-                <li>Quizzes breves y enfocados</li>
-                <li>Niveles y logros por tu esfuerzo</li>
-                <li>Historial personal de resultados</li>
-            </ul>
+        <div class="login-side-top">
+            <a class="brand brand-light" href="/login.html" aria-label="UTPlay, inicio">
+                <span class="auth-logo-badge">UTPlay</span>
+            </a>
+            <span class="login-side-label">Refuerzo académico</span>
         </div>
+
+        <div class="auth-copy">
+            <span class="login-kicker">Ingeniería de Sistemas · UTP Chiclayo</span>
+            <h1>Tu carrera,<br><span>curso a curso.</span></h1>
+            <p>
+                Crea tu cuenta, selecciona tu ciclo y practica los contenidos
+                de tu carrera desde un solo lugar.
+            </p>
+
+            <div class="login-highlights" aria-label="Contenido de UTPlay">
+                <div class="login-highlight">
+                    <strong>75</strong>
+                    <span>Cursos en la malla</span>
+                </div>
+                <div class="login-highlight">
+                    <strong>59</strong>
+                    <span>Cursos con quizzes</span>
+                </div>
+                <div class="login-highlight">
+                    <strong>Top 10</strong>
+                    <span>Ranking estudiantil</span>
+                </div>
+            </div>
+        </div>
+
+        <p class="login-side-footer">Una herramienta de práctica para tu formación universitaria.</p>
     </section>
 
+    <!-- Panel derecho: se conservan los campos e identificadores usados por pages.js -->
     <section class="auth-form-panel">
         <div class="form-wrap form-wrap-wide">
-            <div class="mobile-brand"><span class="brand-mark">UT</span><strong>Play</strong></div>
-            <span class="eyebrow eyebrow-dark">Únete a la plataforma</span>
+            <div class="mobile-brand">
+                <a href="/login.html" aria-label="UTPlay, volver al inicio">
+                    <span class="auth-logo-badge">UTPlay</span>
+                </a>
+            </div>
+
+            <span class="eyebrow eyebrow-dark">Registro estudiantil</span>
             <h2>Crea tu cuenta</h2>
-            <p class="form-intro">Completa tus datos como estudiante.</p>
+            <p class="form-intro">Completa tus datos para comenzar a practicar en UTPlay.</p>
 
             <div id="formAlert" class="alert" hidden role="alert"></div>
 
             <form id="registerForm" novalidate>
                 <label for="nombre">Nombres y apellidos</label>
                 <div class="input-wrap">
-                    <span class="input-icon">◉</span>
-                    <input id="nombre" name="nombre" type="text" autocomplete="name"
-                           maxlength="100" placeholder="Ej. Andrea Torres Ruiz" required>
+                    <span class="input-icon" aria-hidden="true">◉</span>
+                    <input id="nombre" name="nombre" type="text"
+                           autocomplete="name" maxlength="100"
+                           placeholder="Ej. Andrea Torres Ruiz" required>
                 </div>
 
                 <label for="correo">Correo electrónico</label>
                 <div class="input-wrap">
-                    <span class="input-icon">@</span>
-                    <input id="correo" name="correo" type="email" autocomplete="email"
-                           maxlength="150" placeholder="tu.correo@utp.edu.pe" required>
+                    <span class="input-icon" aria-hidden="true">@</span>
+                    <input id="correo" name="correo" type="email"
+                           autocomplete="email" maxlength="150"
+                           placeholder="tu.correo@utp.edu.pe" required>
                 </div>
 
                 <div class="form-grid-two">
                     <div>
                         <label for="password">Contraseña</label>
                         <div class="input-wrap">
-                            <span class="input-icon">●</span>
+                            <span class="input-icon" aria-hidden="true">●</span>
                             <input id="password" name="password" type="password"
                                    autocomplete="new-password" minlength="8" maxlength="72"
                                    placeholder="Mínimo 8 caracteres" required>
+                            <button class="password-toggle" type="button"
+                                    data-toggle-password="password"
+                                    aria-label="Mostrar contraseña">Ver</button>
                         </div>
                     </div>
                     <div>
                         <label for="cicloActual">Ciclo actual</label>
                         <div class="input-wrap">
-                            <span class="input-icon">#</span>
+                            <span class="input-icon" aria-hidden="true">#</span>
                             <select id="cicloActual" name="cicloActual" required>
                                 <option value="">Selecciona</option>
-                                <option value="1">1.er ciclo</option><option value="2">2.º ciclo</option>
-                                <option value="3">3.er ciclo</option><option value="4">4.º ciclo</option>
-                                <option value="5">5.º ciclo</option><option value="6">6.º ciclo</option>
-                                <option value="7">7.º ciclo</option><option value="8">8.º ciclo</option>
-                                <option value="9">9.º ciclo</option><option value="10">10.º ciclo</option>
+                                <option value="1">1.er ciclo</option>
+                                <option value="2">2.º ciclo</option>
+                                <option value="3">3.er ciclo</option>
+                                <option value="4">4.º ciclo</option>
+                                <option value="5">5.º ciclo</option>
+                                <option value="6">6.º ciclo</option>
+                                <option value="7">7.º ciclo</option>
+                                <option value="8">8.º ciclo</option>
+                                <option value="9">9.º ciclo</option>
+                                <option value="10">10.º ciclo</option>
                             </select>
                         </div>
                     </div>
@@ -84,6 +124,7 @@
             </form>
 
             <p class="auth-switch">¿Ya tienes una cuenta? <a href="/login.html">Inicia sesión</a></p>
+            <p class="security-note">Tus datos se utilizan para personalizar tu experiencia de estudio.</p>
         </div>
     </section>
 </main>

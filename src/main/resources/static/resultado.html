@@ -2,54 +2,91 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Resultado | UTPlay</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Resultados del cuestionario | UTPlay</title>
     <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" href="css/interior-custom.css">
+    <link rel="stylesheet" href="css/quiz-resultados-custom.css">
     <script src="js/api.js" defer></script>
     <script src="js/pages.js" defer></script>
 </head>
-<body class="app-page" data-page="resultado" data-protected="true">
+<body class="app-page interior-page resultado-redesign" data-page="resultado" data-protected="true">
 <header class="topbar">
-    <a class="brand" href="/dashboard.html"><span class="brand-mark">UT</span><span>Play</span></a>
+    <a class="brand interior-brand" href="/dashboard.html" aria-label="UTPlay, inicio">
+        <span class="interior-logo">UTPlay</span>
+    </a>
     <nav class="main-nav" aria-label="Navegación principal">
-        <a href="/dashboard.html">Inicio</a><a href="/cursos.html">Cursos</a><a href="/perfil.html">Mi progreso</a>
+        <a href="/dashboard.html">Inicio</a>
+        <a href="/cursos.html" class="active" aria-current="page">Cursos</a>
+        <a href="/ranking.html">Ranking</a>
+        <a href="/perfil.html">Mi progreso</a>
     </nav>
     <div class="user-menu">
-        <div class="avatar js-user-initial">U</div><div><strong class="js-user-name">Estudiante</strong><span class="js-user-cycle">Ciclo</span></div>
-        <button class="icon-button js-logout" type="button" title="Cerrar sesión">↪</button>
+        <div class="avatar js-user-initial" aria-hidden="true">U</div>
+        <div class="interior-user-meta">
+            <strong class="js-user-name">Estudiante</strong>
+            <span class="js-user-cycle">Ciclo</span>
+        </div>
+        <button class="icon-button js-logout" type="button" title="Cerrar sesión" aria-label="Cerrar sesión">Salir</button>
     </div>
 </header>
-
 <main class="page-container result-container">
+    <div class="quiz-route">
+        <a href="/dashboard.html">UTPlay</a><span>/</span>
+        <a href="/cursos.html">Cursos</a><span>/</span>
+        <strong>Resultado</strong>
+    </div>
+
+    <!-- pages.js completa los valores reales del intento guardado. -->
     <section id="resultHero" class="result-hero">
-        <span class="result-icon">✓</span>
-        <span class="eyebrow">Resultado registrado</span>
-        <h1 id="resultTitle">¡Quiz completado!</h1>
-        <p id="resultMessage">Tu práctica ya forma parte de tu progreso.</p>
-        <div class="score-circle"><strong id="resultScore">—</strong><span>puntos de 100</span></div>
-        <div id="approvalBadge" class="status-badge">Procesando</div>
+        <div class="result-summary">
+            <span class="result-icon" aria-hidden="true">✓</span>
+            <span class="eyebrow">CUESTIONARIO FINALIZADO</span>
+            <h1 id="resultTitle">¡Cuestionario completado!</h1>
+            <p id="resultMessage">Tu práctica ya forma parte de tu progreso.</p>
+            <div id="approvalBadge" class="status-badge">Procesando</div>
+        </div>
+        <div class="score-circle" aria-label="Puntaje obtenido">
+            <strong id="resultScore">—</strong>
+            <span>sobre 100</span>
+        </div>
     </section>
 
-    <section class="result-stats">
+    <div class="result-section-label">
+        <span class="interior-kicker">RESUMEN DE TU INTENTO</span>
+        <p>Consulta tu desempeño y los puntos que sumaste.</p>
+    </div>
+    <section class="result-stats" aria-label="Estadísticas del cuestionario">
         <article><span>Respuestas correctas</span><strong id="correctAnswers">—</strong></article>
-        <article><span>Puntos ganados</span><strong id="earnedPoints">—</strong></article>
+        <article><span>Puntos obtenidos</span><strong id="earnedPoints">—</strong></article>
         <article><span>Nivel actual</span><strong id="currentLevel">—</strong></article>
-        <article><span>Total acumulado</span><strong id="totalPoints">—</strong></article>
+        <article><span>XP acumulado</span><strong id="totalPoints">—</strong></article>
     </section>
 
     <section id="newAchievements" class="panel achievement-panel" hidden>
-        <div class="section-heading"><div><span class="eyebrow eyebrow-dark">¡Excelente!</span><h2>Nuevos logros desbloqueados</h2></div></div>
+        <div class="section-heading">
+            <div><span class="eyebrow eyebrow-dark">AVANCE RECONOCIDO</span><h2>Nuevos logros desbloqueados</h2></div>
+        </div>
         <div id="achievementList" class="achievement-list"></div>
     </section>
 
-    <section class="panel">
-        <div class="section-heading"><div><span class="eyebrow eyebrow-dark">Retroalimentación</span><h2>Revisa tus respuestas</h2></div></div>
-        <div id="answerReview" class="answer-review"><p class="empty-state">Cargando detalle…</p></div>
+    <section class="panel result-review-panel">
+        <div class="section-heading">
+            <div>
+                <span class="eyebrow eyebrow-dark">RETROALIMENTACIÓN</span>
+                <h2>Revisa tus respuestas</h2>
+                <p>Identifica los temas que dominas y los que puedes seguir practicando.</p>
+            </div>
+        </div>
+        <div id="answerReview" class="answer-review">
+            <p class="empty-state">Cargando detalle…</p>
+        </div>
     </section>
 
-    <div class="center-actions">
+    <div class="center-actions result-actions">
         <a id="retryQuiz" class="btn btn-soft" href="/cursos.html">Intentar nuevamente</a>
-        <a class="btn btn-primary" href="/cursos.html">Elegir otro curso</a>
+        <a class="btn btn-primary" href="/cursos.html">Elegir otro curso →</a>
+        <a class="result-profile-link" href="/perfil.html">Ver mi progreso ↗</a>
     </div>
 </main>
 </body>

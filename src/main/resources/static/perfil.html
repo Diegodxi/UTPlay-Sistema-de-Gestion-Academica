@@ -9,12 +9,13 @@
     <title>Mi progreso | UTPlay</title>
 
     <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" href="css/interior-custom.css">
 
     <script src="js/api.js" defer></script>
     <script src="js/pages.js" defer></script>
 </head>
 
-<body class="app-page"
+<body class="app-page interior-page perfil-page"
       data-page="perfil"
       data-protected="true">
 
@@ -23,60 +24,23 @@
 ========================================== -->
 
 <header class="topbar">
-
-    <a class="brand" href="/dashboard.html">
-        <span class="brand-mark">UT</span>
-        <span>Play</span>
+    <a class="brand interior-brand" href="/dashboard.html" aria-label="UTPlay, inicio">
+        <span class="interior-logo">UTPlay</span>
     </a>
-
-    <nav class="main-nav"
-         aria-label="Navegación principal">
-
-        <a href="/dashboard.html">
-            Inicio
-        </a>
-
-        <a href="/cursos.html">
-            Cursos
-        </a>
-
-        <a href="/ranking.html">
-            Ranking
-        </a>
-
-        <a class="active"
-           href="/perfil.html"
-           aria-current="page">
-            Mi progreso
-        </a>
-
+    <nav class="main-nav" aria-label="Navegación principal">
+        <a href="/dashboard.html">Inicio</a>
+        <a href="/cursos.html">Cursos</a>
+        <a href="/ranking.html">Ranking</a>
+        <a href="/perfil.html" class="active" aria-current="page">Mi progreso</a>
     </nav>
-
     <div class="user-menu">
-
-        <div class="avatar js-user-initial">
-            U
+        <div class="avatar js-user-initial" aria-hidden="true">U</div>
+        <div class="interior-user-meta">
+            <strong class="js-user-name">Estudiante</strong>
+            <span class="js-user-cycle">Ciclo</span>
         </div>
-
-        <div>
-            <strong class="js-user-name">
-                Estudiante
-            </strong>
-
-            <span class="js-user-cycle">
-                Ciclo
-            </span>
-        </div>
-
-        <button class="icon-button js-logout"
-                type="button"
-                title="Cerrar sesión"
-                aria-label="Cerrar sesión">
-            ↪
-        </button>
-
+        <button class="icon-button js-logout" type="button" title="Cerrar sesión" aria-label="Cerrar sesión">Salir</button>
     </div>
-
 </header>
 
 
@@ -86,19 +50,14 @@
 
 <main class="page-container">
 
-    <section class="page-heading">
-        <div>
-            <span class="eyebrow eyebrow-dark">
-                Cuenta y desempeño
-            </span>
-
-            <h1>Mi perfil académico</h1>
-
-            <p>
-                Actualiza tus datos y consulta
-                todo lo que has avanzado.
-            </p>
+    <section class="page-heading interior-heading profile-heading">
+        <div class="interior-heading-copy">
+            <p class="interior-breadcrumb">UTPlay <span>/</span> Mi progreso</p>
+            <span class="interior-kicker">TU CUENTA Y ACTIVIDAD</span>
+            <h1>Mi progreso académico</h1>
+            <p>Consulta tus resultados, revisa tus logros y mantén actualizados tus datos.</p>
         </div>
+        <a class="interior-outline-link" href="/cursos.html">Seguir practicando <span aria-hidden="true">↗</span></a>
     </section>
 
 
