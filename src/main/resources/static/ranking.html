@@ -1,0 +1,375 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+          content="Consulta el ranking de estudiantes de UTPlay.">
+
+    <title>Ranking de estudiantes | UTPlay</title>
+
+    <link rel="stylesheet" href="css/app.css">
+
+    <script src="js/api.js" defer></script>
+    <script src="js/pages.js" defer></script>
+</head>
+
+<body class="app-page"
+      data-page="ranking"
+      data-protected="true">
+
+
+
+<header class="topbar">
+
+    <a class="brand" href="/dashboard.html">
+        <span class="brand-mark">UT</span>
+        <span>Play</span>
+    </a>
+
+    <nav class="main-nav"
+         aria-label="Navegación principal">
+
+        <a href="/dashboard.html">
+            Inicio
+        </a>
+
+        <a href="/cursos.html">
+            Cursos
+        </a>
+
+        <a class="active"
+           href="/ranking.html"
+           aria-current="page">
+            Ranking
+        </a>
+
+        <a href="/perfil.html">
+            Mi progreso
+        </a>
+
+    </nav>
+
+    <div class="user-menu">
+
+        <div class="avatar js-user-initial">
+            U
+        </div>
+
+        <div>
+            <strong class="js-user-name">
+                Estudiante
+            </strong>
+
+            <span class="js-user-cycle">
+                Ciclo
+            </span>
+        </div>
+
+        <button class="icon-button js-logout"
+                type="button"
+                title="Cerrar sesión"
+                aria-label="Cerrar sesión">
+            ↪
+        </button>
+
+    </div>
+
+</header>
+
+
+
+
+<main class="page-container ranking-page">
+
+    <!-- TÍTULO -->
+
+    <section class="page-heading">
+
+        <div>
+            <span class="eyebrow eyebrow-dark">
+                UTPlay · Clasificación de estudiantes
+            </span>
+
+            <h1>Ranking de estudiantes 🏆</h1>
+
+            <p>
+                Practica con los quizzes de tu carrera,
+                gana puntos y escala posiciones
+                en la clasificación.
+            </p>
+        </div>
+
+    </section>
+
+
+  
+
+    <section class="ranking-banner">
+
+        <div class="ranking-banner-copy">
+
+            <span class="eyebrow">
+                Desafío académico
+            </span>
+
+            <h2>¡Cada punto cuenta!</h2>
+
+            <p>
+                Completa tus retos, fortalece tus
+                conocimientos y consigue un lugar
+                entre los mejores estudiantes.
+            </p>
+
+            <a href="/cursos.html"
+               class="btn btn-light">
+                Ganar más puntos →
+            </a>
+
+        </div>
+
+        <div class="ranking-my-position">
+
+            <span class="ranking-small-label">
+                Tu posición
+            </span>
+
+            <strong id="rankingMyPosition">
+                —
+            </strong>
+
+            <span id="rankingMyMessage">
+                Consultando tu posición...
+            </span>
+
+        </div>
+
+    </section>
+
+
+
+
+    <section class="ranking-stats">
+
+        <article class="panel ranking-stat">
+
+            <span class="ranking-stat-icon">
+                ★
+            </span>
+
+            <div>
+                <span>Tus puntos</span>
+
+                <strong id="rankingMyPoints">
+                    —
+                </strong>
+            </div>
+
+        </article>
+
+        <article class="panel ranking-stat">
+
+            <span class="ranking-stat-icon">
+                🏆
+            </span>
+
+            <div>
+                <span>Mayor puntuación</span>
+
+                <strong id="rankingTopPoints">
+                    —
+                </strong>
+            </div>
+
+        </article>
+
+        <article class="panel ranking-stat">
+
+            <span class="ranking-stat-icon">
+                👥
+            </span>
+
+            <div>
+                <span>Estudiantes en el top 10</span>
+
+                <strong id="rankingCount">
+                    —
+                </strong>
+            </div>
+
+        </article>
+
+    </section>
+
+
+
+
+    <div id="rankingError"
+         class="alert"
+         role="alert"
+         hidden>
+    </div>
+
+
+   
+
+    <section id="rankingLoading"
+             class="panel ranking-loading"
+             aria-live="polite">
+
+        <p class="empty-state">
+            Cargando clasificación de estudiantes...
+        </p>
+
+    </section>
+
+
+   
+
+    <section id="rankingEmpty"
+             class="panel ranking-empty"
+             hidden>
+
+        <div class="ranking-empty-icon">
+            🏆
+        </div>
+
+        <h2>¡El ranking está esperando!</h2>
+
+        <p>
+            Todavía no hay estudiantes registrados
+            en la clasificación.
+
+            Completa un quiz para comenzar
+            a sumar puntos.
+        </p>
+
+        <a href="/cursos.html"
+           class="btn btn-primary">
+            Explorar cursos
+        </a>
+
+    </section>
+
+
+
+
+    <div id="rankingContent" hidden>
+
+        <!-- PODIO -->
+
+        <section class="panel ranking-podium-panel">
+
+            <div class="section-heading">
+
+                <div>
+                    <span class="eyebrow eyebrow-dark">
+                        Los mejores estudiantes
+                    </span>
+
+                    <h2>El podio de UTPlay</h2>
+                </div>
+
+            </div>
+
+            <p class="ranking-description">
+                Estos son los tres estudiantes
+                con mayor puntuación acumulada.
+            </p>
+
+            <div id="rankingPodium"
+                 class="ranking-podium"
+                 aria-label="Tres primeros puestos">
+            </div>
+
+        </section>
+
+
+        <!-- CLASIFICACIÓN -->
+
+        <section class="panel ranking-list-panel">
+
+            <div class="section-heading">
+
+                <div>
+                    <span class="eyebrow eyebrow-dark">
+                        Clasificación general
+                    </span>
+
+                    <h2>Los 10 mejores</h2>
+                </div>
+
+            </div>
+
+            <p class="ranking-description">
+                Las posiciones se calculan utilizando
+                los puntos que cada estudiante
+                ha acumulado resolviendo quizzes.
+            </p>
+
+            <div class="ranking-table-wrap">
+
+                <table class="ranking-table">
+
+                    <thead>
+                        <tr>
+                            <th scope="col">
+                                Posición
+                            </th>
+
+                            <th scope="col">
+                                Estudiante
+                            </th>
+
+                            <th scope="col">
+                                Nivel
+                            </th>
+
+                            <th scope="col">
+                                Puntos
+                            </th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="rankingRows">
+                    </tbody>
+
+                </table>
+
+            </div>
+
+            <p class="ranking-note">
+                La clasificación muestra únicamente
+                nombres, niveles y puntos.
+                Los correos y las contraseñas
+                no son públicos.
+            </p>
+
+        </section>
+
+    </div>
+
+
+   
+
+    <div class="center-actions ranking-actions">
+
+        <a href="/dashboard.html"
+           class="btn btn-soft">
+            ← Volver al inicio
+        </a>
+
+        <a href="/cursos.html"
+           class="btn btn-primary">
+            Seguir practicando
+        </a>
+
+    </div>
+
+</main>
+
+</body>
+</html>

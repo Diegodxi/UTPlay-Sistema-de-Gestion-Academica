@@ -1,89 +1,373 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
     <title>Mi progreso | UTPlay</title>
+
     <link rel="stylesheet" href="css/app.css">
+
     <script src="js/api.js" defer></script>
     <script src="js/pages.js" defer></script>
 </head>
-<body class="app-page" data-page="perfil" data-protected="true">
+
+<body class="app-page"
+      data-page="perfil"
+      data-protected="true">
+
+<!-- ==========================================
+     MENÚ SUPERIOR
+========================================== -->
+
 <header class="topbar">
-    <a class="brand" href="/dashboard.html"><span class="brand-mark">UT</span><span>Play</span></a>
-    <nav class="main-nav" aria-label="Navegación principal">
-        <a href="/dashboard.html">Inicio</a><a href="/cursos.html">Cursos</a><a class="active" href="/perfil.html">Mi progreso</a>
+
+    <a class="brand" href="/dashboard.html">
+        <span class="brand-mark">UT</span>
+        <span>Play</span>
+    </a>
+
+    <nav class="main-nav"
+         aria-label="Navegación principal">
+
+        <a href="/dashboard.html">
+            Inicio
+        </a>
+
+        <a href="/cursos.html">
+            Cursos
+        </a>
+
+        <a href="/ranking.html">
+            Ranking
+        </a>
+
+        <a class="active"
+           href="/perfil.html"
+           aria-current="page">
+            Mi progreso
+        </a>
+
     </nav>
+
     <div class="user-menu">
-        <div class="avatar js-user-initial">U</div><div><strong class="js-user-name">Estudiante</strong><span class="js-user-cycle">Ciclo</span></div>
-        <button class="icon-button js-logout" type="button" title="Cerrar sesión">↪</button>
+
+        <div class="avatar js-user-initial">
+            U
+        </div>
+
+        <div>
+            <strong class="js-user-name">
+                Estudiante
+            </strong>
+
+            <span class="js-user-cycle">
+                Ciclo
+            </span>
+        </div>
+
+        <button class="icon-button js-logout"
+                type="button"
+                title="Cerrar sesión"
+                aria-label="Cerrar sesión">
+            ↪
+        </button>
+
     </div>
+
 </header>
 
+
+<!-- ==========================================
+     CONTENIDO PRINCIPAL
+========================================== -->
+
 <main class="page-container">
+
     <section class="page-heading">
-        <div><span class="eyebrow eyebrow-dark">Cuenta y desempeño</span><h1>Mi perfil académico</h1><p>Actualiza tus datos y consulta todo lo que has avanzado.</p></div>
+        <div>
+            <span class="eyebrow eyebrow-dark">
+                Cuenta y desempeño
+            </span>
+
+            <h1>Mi perfil académico</h1>
+
+            <p>
+                Actualiza tus datos y consulta
+                todo lo que has avanzado.
+            </p>
+        </div>
     </section>
+
+
+    <!-- ======================================
+         INFORMACIÓN DEL ESTUDIANTE
+    ====================================== -->
 
     <div class="profile-grid">
+
         <section class="panel profile-card">
-            <div class="profile-avatar js-user-initial">U</div>
-            <h2 id="profileDisplayName">Estudiante</h2>
-            <p id="profileEmail">correo@ejemplo.com</p>
-            <div class="level-pill">Nivel <strong id="profileLevel">1</strong></div>
-            <div class="level-progress">
-                <div class="progress-track"><span id="levelProgressBar" style="width:0"></span></div>
-                <small id="nextLevelCopy">— puntos para el siguiente nivel</small>
+
+            <div class="profile-avatar js-user-initial">
+                U
             </div>
+
+            <h2 id="profileDisplayName">
+                Estudiante
+            </h2>
+
+            <p id="profileEmail">
+                correo@ejemplo.com
+            </p>
+
+            <div class="level-pill">
+                Nivel
+                <strong id="profileLevel">1</strong>
+            </div>
+
+            <div class="level-progress">
+
+                <div class="progress-track">
+                    <span id="levelProgressBar"
+                          style="width:0"></span>
+                </div>
+
+                <small id="nextLevelCopy">
+                    Puntos para el siguiente nivel
+                </small>
+
+            </div>
+
             <dl class="profile-facts">
-                <div><dt>Puntos</dt><dd id="profilePoints">—</dd></div>
-                <div><dt>Ciclo</dt><dd id="profileCycle">—</dd></div>
-                <div><dt>Miembro desde</dt><dd id="memberSince">—</dd></div>
+
+                <div>
+                    <dt>Puntos</dt>
+                    <dd id="profilePoints">—</dd>
+                </div>
+
+                <div>
+                    <dt>Ciclo</dt>
+                    <dd id="profileCycle">—</dd>
+                </div>
+
+                <div>
+                    <dt>Miembro desde</dt>
+                    <dd id="memberSince">—</dd>
+                </div>
+
             </dl>
+
         </section>
+
+
+        <!-- ==================================
+             EDITAR DATOS
+        ================================== -->
 
         <section class="panel profile-form-panel">
-            <div class="section-heading"><div><span class="eyebrow eyebrow-dark">Información personal</span><h2>Editar datos</h2></div></div>
-            <div id="profileAlert" class="alert" hidden role="alert"></div>
+
+            <div class="section-heading">
+                <div>
+                    <span class="eyebrow eyebrow-dark">
+                        Información personal
+                    </span>
+
+                    <h2>Editar datos</h2>
+                </div>
+            </div>
+
+            <div id="profileAlert"
+                 class="alert"
+                 hidden
+                 role="alert">
+            </div>
+
             <form id="profileForm">
-                <label for="profileName">Nombres y apellidos</label>
-                <input id="profileName" type="text" maxlength="100" required>
-                <label for="profileEmailInput">Correo electrónico</label>
-                <input id="profileEmailInput" type="email" disabled>
-                <label for="profileCycleInput">Ciclo actual</label>
-                <select id="profileCycleInput" required>
-                    <option value="1">1.er ciclo</option><option value="2">2.º ciclo</option>
-                    <option value="3">3.er ciclo</option><option value="4">4.º ciclo</option>
-                    <option value="5">5.º ciclo</option><option value="6">6.º ciclo</option>
-                    <option value="7">7.º ciclo</option><option value="8">8.º ciclo</option>
-                    <option value="9">9.º ciclo</option><option value="10">10.º ciclo</option>
+
+                <label for="profileName">
+                    Nombres y apellidos
+                </label>
+
+                <input id="profileName"
+                       type="text"
+                       maxlength="100"
+                       required>
+
+                <label for="profileEmailInput">
+                    Correo electrónico
+                </label>
+
+                <input id="profileEmailInput"
+                       type="email"
+                       disabled>
+
+                <label for="profileCycleInput">
+                    Ciclo actual
+                </label>
+
+                <select id="profileCycleInput"
+                        required>
+
+                    <option value="1">1.er ciclo</option>
+                    <option value="2">2.º ciclo</option>
+                    <option value="3">3.er ciclo</option>
+                    <option value="4">4.º ciclo</option>
+                    <option value="5">5.º ciclo</option>
+                    <option value="6">6.º ciclo</option>
+                    <option value="7">7.º ciclo</option>
+                    <option value="8">8.º ciclo</option>
+                    <option value="9">9.º ciclo</option>
+                    <option value="10">10.º ciclo</option>
+
                 </select>
-                <button id="profileSubmit" class="btn btn-primary" type="submit">
-                    <span class="button-text">Guardar cambios</span><span class="button-loader" hidden></span>
+
+                <button id="profileSubmit"
+                        class="btn btn-primary"
+                        type="submit">
+
+                    <span class="button-text">
+                        Guardar cambios
+                    </span>
+
+                    <span class="button-loader"
+                          hidden></span>
+
                 </button>
+
             </form>
+
         </section>
+
     </div>
+
+
+    <!-- ======================================
+         ESTADÍSTICAS DE PROGRESO
+    ====================================== -->
 
     <section class="stats-grid profile-stats">
-        <article class="stat-card"><div class="stat-icon green">✓</div><div><span>Quizzes</span><strong id="profileQuizzes">—</strong></div><small>Completados</small></article>
-        <article class="stat-card"><div class="stat-icon orange">◎</div><div><span>Promedio</span><strong id="profileAverage">—</strong></div><small>Mejores intentos</small></article>
-        <article class="stat-card"><div class="stat-icon violet">◈</div><div><span>Logros</span><strong id="profileAchievements">—</strong></div><small>Desbloqueados</small></article>
-        <article class="stat-card"><div class="stat-icon blue">↗</div><div><span>Avance</span><strong id="profileProgress">—</strong></div><small>Ruta disponible</small></article>
+
+        <article class="stat-card">
+
+            <div class="stat-icon green">✓</div>
+
+            <div>
+                <span>Quizzes</span>
+                <strong id="profileQuizzes">—</strong>
+            </div>
+
+            <small>Completados</small>
+
+        </article>
+
+
+        <article class="stat-card">
+
+            <div class="stat-icon orange">◎</div>
+
+            <div>
+                <span>Promedio</span>
+                <strong id="profileAverage">—</strong>
+            </div>
+
+            <small>Mejores intentos</small>
+
+        </article>
+
+
+        <article class="stat-card">
+
+            <div class="stat-icon violet">◈</div>
+
+            <div>
+                <span>Logros</span>
+                <strong id="profileAchievements">—</strong>
+            </div>
+
+            <small>Desbloqueados</small>
+
+        </article>
+
+
+        <article class="stat-card">
+
+            <div class="stat-icon blue">↗</div>
+
+            <div>
+                <span>Avance</span>
+                <strong id="profileProgress">—</strong>
+            </div>
+
+            <small>Ruta disponible</small>
+
+        </article>
+
     </section>
 
+
+    <!-- ======================================
+         HISTORIAL Y LOGROS
+    ====================================== -->
+
     <div class="content-grid profile-content">
+
         <section class="panel panel-large">
-            <div class="section-heading"><div><span class="eyebrow eyebrow-dark">Historial</span><h2>Mis resultados</h2></div></div>
-            <div id="profileHistory" class="table-wrap"><p class="empty-state">Cargando historial…</p></div>
+
+            <div class="section-heading">
+                <div>
+                    <span class="eyebrow eyebrow-dark">
+                        Historial
+                    </span>
+
+                    <h2>Mis resultados</h2>
+                </div>
+            </div>
+
+            <div id="profileHistory"
+                 class="table-wrap">
+
+                <p class="empty-state">
+                    Cargando historial...
+                </p>
+
+            </div>
+
         </section>
+
+
         <aside class="panel">
-            <div class="section-heading"><div><span class="eyebrow eyebrow-dark">Colección</span><h2>Mis logros</h2></div></div>
-            <div id="profileAchievementList" class="achievement-list compact"><p class="empty-state">Aún no hay logros.</p></div>
+
+            <div class="section-heading">
+                <div>
+                    <span class="eyebrow eyebrow-dark">
+                        Colección
+                    </span>
+
+                    <h2>Mis logros</h2>
+                </div>
+            </div>
+
+            <div id="profileAchievementList"
+                 class="achievement-list compact">
+
+                <p class="empty-state">
+                    Aún no hay logros.
+                </p>
+
+            </div>
+
         </aside>
+
     </div>
+
 </main>
 
-<div id="toast" class="toast" hidden></div>
+<div id="toast"
+     class="toast"
+     hidden>
+</div>
+
 </body>
 </html>
