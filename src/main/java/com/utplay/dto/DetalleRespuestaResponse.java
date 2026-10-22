@@ -5,6 +5,8 @@ public record DetalleRespuestaResponse(
         String enunciado,
         String alternativaElegida,
         String respuestaCorrecta,
-        boolean correcta
+        boolean correcta,
+        String textoElegida,
+        String textoCorrecta
 ) {
 }

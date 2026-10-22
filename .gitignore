@@ -6,3 +6,4 @@ target/
 .env
 Thumbs.db
 .DS_Store
+.env.properties

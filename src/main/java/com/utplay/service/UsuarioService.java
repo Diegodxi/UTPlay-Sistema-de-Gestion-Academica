@@ -1,5 +1,4 @@
 package com.utplay.service;
-
 import com.utplay.dto.LoginRequest;
 import com.utplay.dto.LoginResponse;
 import com.utplay.dto.RegistroRequest;
@@ -11,6 +10,7 @@ import com.utplay.exception.ResourceNotFoundException;
 import com.utplay.exception.UnauthorizedException;
 import com.utplay.model.Usuario;
 import com.utplay.repository.UsuarioRepository;
+import com.utplay.security.IntentosLoginService;
 import com.utplay.security.JwtService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -24,15 +24,18 @@ public class UsuarioService {
     private final UsuarioRepository usuarioRepository;
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
+    private final IntentosLoginService intentosLoginService;
 
     public UsuarioService(
             UsuarioRepository usuarioRepository,
             PasswordEncoder passwordEncoder,
-            JwtService jwtService
+            JwtService jwtService,
+            IntentosLoginService intentosLoginService
     ) {
         this.usuarioRepository = usuarioRepository;
         this.passwordEncoder = passwordEncoder;
         this.jwtService = jwtService;
+        this.intentosLoginService = intentosLoginService;
     }
 
     @Transactional
@@ -56,13 +59,16 @@ public class UsuarioService {
     @Transactional(readOnly = true)
     public LoginResponse login(LoginRequest request) {
         String correo = normalizarCorreo(request.correo());
-        Usuario usuario = usuarioRepository.findByCorreoIgnoreCase(correo)
-                .orElseThrow(() -> new UnauthorizedException("Correo o contraseña incorrectos"));
+        intentosLoginService.verificarNoBloqueado(correo);
+        Usuario usuario = usuarioRepository.findByCorreoIgnoreCase(correo).orElse(null);
 
-        if (!passwordEncoder.matches(request.password(), usuario.getPassword())) {
-            throw new UnauthorizedException("Correo o contraseña incorrectos");
+
+        if (usuario == null || !passwordEncoder.matches(request.password(), usuario.getPassword())) {
+        intentosLoginService.registrarFallo(correo);
+        throw new UnauthorizedException("Correo o contraseña incorrectos");
         }
 
+        intentosLoginService.registrarExito(correo);
         String token = jwtService.generarToken(usuario.getCorreo(), usuario.getIdUsuario());
         return new LoginResponse(token, "Bearer", jwtService.getExpirationMs(), toResponse(usuario));
     }

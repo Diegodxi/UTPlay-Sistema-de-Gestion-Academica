@@ -1,5 +1,4 @@
 package com.utplay.service;
-
 import com.utplay.dto.DetalleRespuestaResponse;
 import com.utplay.dto.LogroResponse;
 import com.utplay.dto.PreguntaResponse;
@@ -18,7 +17,6 @@ import com.utplay.repository.QuizRepository;
 import com.utplay.repository.ResultadoRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -27,6 +25,7 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.Collections;
 
 @Service
 public class QuizService {
@@ -60,14 +59,16 @@ public class QuizService {
         Quiz quiz = obtenerQuizActivo(idQuiz);
         cursoService.validarDisponible(quiz.getCurso(), usuario);
 
-        List<PreguntaResponse> preguntas = preguntaRepository
+        List<PreguntaResponse> preguntas = new ArrayList<>(preguntaRepository
                 .findByQuizIdQuizOrderByIdPreguntaAsc(idQuiz).stream()
                 .map(this::toPreguntaResponse)
-                .toList();
+                .toList());
 
         if (preguntas.isEmpty()) {
             throw new BusinessException("Este quiz todavía no tiene preguntas configuradas");
         }
+
+        Collections.shuffle(preguntas);
 
         return new QuizResponse(
                 quiz.getIdQuiz(),
@@ -107,7 +108,9 @@ public class QuizService {
                     pregunta.getEnunciado(),
                     elegida,
                     pregunta.getRespuestaCorrecta(),
-                    correcta
+                    correcta,
+                    textoAlternativa(pregunta, elegida),
+                    textoAlternativa(pregunta, pregunta.getRespuestaCorrecta())
             ));
         }
 
@@ -155,12 +158,28 @@ public class QuizService {
     }
 
     private PreguntaResponse toPreguntaResponse(Pregunta pregunta) {
+        List<Map.Entry<String, String>> opciones = new ArrayList<>(List.of(
+                Map.entry("A", pregunta.getAlternativaA()),
+                Map.entry("B", pregunta.getAlternativaB()),
+                Map.entry("C", pregunta.getAlternativaC()),
+                Map.entry("D", pregunta.getAlternativaD())
+        ));
+
+        Collections.shuffle(opciones);
+
         Map<String, String> alternativas = new LinkedHashMap<>();
-        alternativas.put("A", pregunta.getAlternativaA());
-        alternativas.put("B", pregunta.getAlternativaB());
-        alternativas.put("C", pregunta.getAlternativaC());
-        alternativas.put("D", pregunta.getAlternativaD());
+        opciones.forEach(opcion -> alternativas.put(opcion.getKey(), opcion.getValue()));
+
         return new PreguntaResponse(pregunta.getIdPregunta(), pregunta.getEnunciado(), alternativas);
+    }
+
+    private String textoAlternativa(Pregunta pregunta, String letra) {
+        return switch (letra.toUpperCase(Locale.ROOT)) {
+            case "A" -> pregunta.getAlternativaA();
+            case "B" -> pregunta.getAlternativaB();
+            case "C" -> pregunta.getAlternativaC();
+            default -> pregunta.getAlternativaD();
+        };
     }
 
     private Map<Long, String> normalizarYValidarRespuestas(

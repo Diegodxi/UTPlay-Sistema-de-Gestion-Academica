@@ -77,7 +77,10 @@
         <article class="stat-card">
             <div class="dashboard-stat-top"><span>Nivel actual</span><span class="dashboard-stat-tag">NV</span></div>
             <strong id="levelStat">—</strong>
-            <small>500 puntos por nivel</small>
+            <div id="levelProgressTrack" class="progress-track" role="progressbar" aria-label="Progreso hacia el siguiente nivel" aria-valuemin="0" aria-valuemax="500" aria-valuenow="0">
+            <span id="levelProgressBar" style="width:0"></span>
+            </div>
+            <small id="levelProgressCopy">0 / 500 XP</small>
         </article>
         <article class="stat-card">
             <div class="dashboard-stat-top"><span>Quizzes completados</span><span class="dashboard-stat-tag">QC</span></div>

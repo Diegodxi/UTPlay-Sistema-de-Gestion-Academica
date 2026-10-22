@@ -147,6 +147,7 @@ async function initDashboard() {
 
         document.getElementById('levelStat').textContent =
             profile.nivel;
+            renderProgresoNivel(profile);
 
         document.getElementById('quizStat').textContent =
             progress.quizzesCompletados;
@@ -228,8 +229,20 @@ function renderProgress(progress) {
             ? `${progress.quizzesCompletados} de ${progress.quizzesDisponibles} quizzes distintos completados hasta tu ciclo.`
             : 'Todavía no hay quizzes disponibles.';
 }
+function renderProgresoNivel(perfil) {
+    const puntosPorNivel = 500;
+    const puntosEnNivel = perfil.puntosTotales % puntosPorNivel;
+    const porcentaje = puntosEnNivel * 100 / puntosPorNivel;
 
-// MALLA CURRICULAR
+    document.getElementById('levelProgressBar').style.width = `${porcentaje}%`;
+
+    document.getElementById('levelProgressTrack')
+        .setAttribute('aria-valuenow', puntosEnNivel);
+
+    document.getElementById('levelProgressCopy').textContent =
+        `${puntosEnNivel} / ${puntosPorNivel} XP para el nivel ${perfil.nivel + 1}`;
+}
+
 function initCursos() {
     document.getElementById('cycleFilter')
         .addEventListener('change', loadCourses);
@@ -569,21 +582,21 @@ function renderQuiz(quiz) {
 
                 <div class="options-list">
                     ${Object.entries(question.alternativas)
-                        .map(([letter, text]) => `
-                            <label class="option-label">
-                                <input type="radio"
-                                       name="question-${question.idPregunta}"
-                                       value="${letter}">
+                .map(([letter, text], position) => `
+                    <label class="option-label">
+                        <input type="radio"
+                            name="question-${question.idPregunta}"
+                            value="${letter}">
 
-                                <span class="option-letter">
-                                    ${letter}
-                                </span>
+                        <span class="option-letter">
+                            ${String.fromCharCode(65 + position)}
+                        </span>
 
-                                <span class="option-text">
-                                    ${UTPlay.escapeHtml(text)}
-                                </span>
-                            </label>
-                        `).join('')}
+                        <span class="option-text">
+                            ${UTPlay.escapeHtml(text)}
+                        </span>
+                    </label>
+                `).join('')}
                 </div>
             </article>
         `).join('');
@@ -736,7 +749,7 @@ function initResultado() {
 
                 <p>
                     Tu respuesta:
-                    ${UTPlay.escapeHtml(item.alternativaElegida)}
+                    ${UTPlay.escapeHtml(item.textoElegida ?? item.alternativaElegida)}
                 </p>
 
                 ${item.correcta
@@ -744,7 +757,7 @@ function initResultado() {
                     : `
                         <p class="correct-copy">
                             Respuesta correcta:
-                            ${UTPlay.escapeHtml(item.respuestaCorrecta)}
+                            ${UTPlay.escapeHtml(item.textoCorrecta ?? item.respuestaCorrecta)}
                         </p>
                     `
                 }
